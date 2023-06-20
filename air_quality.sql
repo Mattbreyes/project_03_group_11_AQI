@@ -1,4 +1,6 @@
-// Data Engineering
+
+
+-- Data Engineering
 drop table if exists us_aqi;
 drop table if exists ca_wildfires;
 
@@ -65,13 +67,13 @@ CREATE TABLE ca_wildfires (
 	WaterTenders int
 );
 
-// Load the file
+-- Load the file
 
 copy us_aqi from 
-'/private/tmp/US_AQI.csv' 
+'C:\Users\matth\OneDrive\Desktop\Education\UCB\US_AQI.csv' 
 csv header delimiter ',';
 copy ca_wildfires from
-'/private/tmp/California_Fire_Incidents.csv'
+'C:\Users\matth\OneDrive\Desktop\Education\UCB\California_Fire_Incidents.csv'
 csv header delimiter ',';
 
 
