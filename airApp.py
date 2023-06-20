@@ -1,11 +1,11 @@
 import psycopg2
-from flask import Flask, jsonify
+from flask import Flask, jsonify,render_template
 from datetime import datetime
 
 #################################################
 # Database Setup
 #################################################
-conn = psycopg2.connect(database="air_quality_db",
+conn = psycopg2.connect(database="postgres",
                             user="postgres",
                             password="postgres",
                             host="localhost",
@@ -14,8 +14,8 @@ cur = conn.cursor()
 
 
 conn.commit()
-cur.close()
-conn.close()
+# cur.close()
+# conn.close()
 
 #################################################
 # Flask Setup
@@ -43,17 +43,18 @@ def start(selected_date):
     #city = city.capitalize()
     #query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population FROM us_aqi WHERE city_ascii = '{city}'"
     
-    query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population, date FROM us_aqi WHERE date = '{selected_date}'"
+    query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population, date FROM us_aqi WHERE date = '{selected_date}' AND state_id = 'CA'"
 
     cur.execute(query)
     rows = cur.fetchall()
     # Create a list to store all the rows as a dictionary (list of dictionaries)
     array_of_rows = []
 
-    # Create a dictionary for the current row
-    dict_of_row = {}
-
     for row in rows:
+        # Create a dictionary for the current row
+        dict_of_row = {}
+
+        # Append the value to the dictionary
         dict_of_row["aqi"] = row[0]
         dict_of_row["city_ascii"] = row[1]
         dict_of_row["state_id"] = row[2]
@@ -65,6 +66,7 @@ def start(selected_date):
         
         # Append the current dictionary to the list
         array_of_rows.append(dict_of_row)
+        
 
     # Find the earliest date in the database
     #query1 = "SELECT MIN(date) FROM us_aqi"
@@ -76,7 +78,10 @@ def start(selected_date):
     cur.close()
     conn.close()
 
-    return array_of_rows
+    return jsonify(array_of_rows)
+
+
+
 
 
 if __name__ == '__main__':
