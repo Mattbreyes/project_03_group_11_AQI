@@ -1,4 +1,7 @@
+// Data Engineering
 drop table if exists us_aqi;
+drop table if exists ca_wildfires;
+
 CREATE TABLE us_aqi (
 	id int NOT NULL,
 	CBSA_Code int NOT NULL,
@@ -19,14 +22,6 @@ CREATE TABLE us_aqi (
 
 );
 
-
-copy us_aqi from 
-'/private/tmp/US_AQI.csv' 
-csv header delimiter ',';
-
-select * from us_aqi;
-
-drop table if exists ca_wildfires;
 CREATE TABLE ca_wildfires (
 	Acres_burned int,
 	Active Boolean,
@@ -70,6 +65,16 @@ CREATE TABLE ca_wildfires (
 	WaterTenders int
 );
 
+// Load the file
+
+copy us_aqi from 
+'/private/tmp/US_AQI.csv' 
+csv header delimiter ',';
 copy ca_wildfires from
 '/private/tmp/California_Fire_Incidents.csv'
 csv header delimiter ',';
+
+
+
+select * from us_aqi limit 5;
+select * from ca_wildfires limit 5;
