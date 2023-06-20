@@ -1,7 +1,6 @@
 import psycopg2
 from flask import Flask, jsonify
 from datetime import datetime
-import sys
 
 #################################################
 # Database Setup
@@ -45,7 +44,7 @@ def start(selected_date):
 
     cur.execute(query)
     rows = cur.fetchall()
-    #print (rows)
+   
     # Create a list to store all the rows as a dictionary (list of dictionaries)
     array_of_rows = []
 
@@ -53,7 +52,6 @@ def start(selected_date):
     dict_of_row = {}
 
     for row in rows:
-        print(row, flush = True)
         dict_of_row = {}
         dict_of_row["aqi"] = row[0]
         dict_of_row["city_ascii"] = row[1]
