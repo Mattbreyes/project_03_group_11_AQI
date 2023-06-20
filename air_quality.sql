@@ -1,5 +1,3 @@
-
-
 -- Data Engineering
 drop table if exists us_aqi;
 drop table if exists ca_wildfires;
