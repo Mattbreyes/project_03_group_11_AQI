@@ -1,0 +1,50 @@
+/* Container holding the image and the text */
+.web-title {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Georgia;
+    font-size: 250%;
+  }
+
+  /* Bottom-left text */
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 150px;
+    font-family: Georgia;
+    font-style: italic;
+    font-size: 100%;
+  }
+
+  /* Image styling */
+  img {
+    border-radius: 8px;
+    opacity: 0.95;
+    width: 80%;
+    height: 35%;
+  }
+
+  /* Floating panel */
+  /* .panel {
+    width: 300px;
+    height: 400px;
+    border: 1px solid;
+    text-align: center;
+    background: grey;
+    float: left;
+  } */
+
+  /* .row {
+    clear: left;
+  } */
+
+  
