@@ -10,13 +10,13 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(myMap);
 
 // Load the GeoJSON data.
-let geoData = "<flask api url link>"
+let geoData = "/choropleth/1981-01-01/";
 
 let geojson;
 
 // Get the data with d3.
 d3.json(geoData).then(function(data) {
-
+  console.log(data);
   // Create a new choropleth layer
   geojson = L.choropleth(data, {
 
@@ -58,12 +58,12 @@ d3.json(geoData).then(function(data) {
       "<div class=\"labels\">" +
         "<div class=\"min\">" + limits[0] + "</div>" +
         "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-      "</div>";
+      "</div>"
 
     div.innerHTML = legendInfo;
 
     limits.forEach(function(limit, index) {
-      labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+      labels.push("<li style=\"background-color: " + colors[index] + "\"></li>")
     });
 
     div.innerHTML += "<ul>" + labels.join("") + "</ul>";

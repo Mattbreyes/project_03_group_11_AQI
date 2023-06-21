@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Wildfire and Air Quality</title>
+  <!-- <link rel="stylesheet" href="css/web_styling.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 web-title">
+        <img src="https://eponline.com/articles/2023/03/10/-/media/ENV/eponline/Images/2023/03/03,-d-,10,-d-,ep01.jpg" alt="California Wildfire" style="height:300px;"/>
+        <h1 class="centered">California Wildfire <br> and Air Quality</h1>
+        <p class="bottom-left">Welcome to the visualization of air quality in California 2013-2019</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3">
+        <div class="panel">
+          <h3>Air Quality Index (AQI)</h3>
+          <ul>
+            <li>Good: 0-50</li>
+            <li>Moderate: 51-100</li>
+            <li>Unhealthy for Sensitive Groups: 101-150</li>
+            <li>Unhealthy: 151-200</li>
+            <li>Very Unhealthy: 201-300</li>
+            <li>Hazardous: 301+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-9">
+        <div id="line-plot"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div id="density-heat-map"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div id="choropleth-map"></div>
+      </div>
+    </div>
+      
+    <div class="row">
+      <div class="col">
+        <div id="density-plot"></div>
+      </div>
+    </div>
+
+  </div>
+  <div id="map"></div>
+  <!-- <div class="container">
+    <h2>Years</h2>
+    <p>Select the year data from the dropdown menu</p>                                
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Years
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="https://www.youtube.com/">youtube</a></li>
+        <li><a href='#'>CSS</a></li>
+        <li><a href="#">JavaScript</a></li>
+      </ul>
+    </div>
+  </div> -->
+
+  <!-- D3 Javascript -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- Plotly Javascript -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+  crossorigin=""></script>
+  <!-- <script src="{{url_for('static', filename='style.css')}}"></script> -->
+  <script src="{{url_for('static', filename='Choropleth.js')}}"></script>
+  <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
+  
+  <!-- Our Javascripts -->
+  <!-- Please save your js files in js folders and modify the name of your js files here -->
+  <!-- <script src="js/test.js"></script> -->
+  <!-- <script type="text/javascript" src="Templates/Choropleth.js"></script> -->
+  <!-- <script src="js/name-of-your-js-file-2.js"></script>
+  <script src="js/name-of-your-js-file-3.js"></script> -->
+  
+</body>
+
+</html>
