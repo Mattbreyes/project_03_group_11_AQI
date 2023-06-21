@@ -4,7 +4,7 @@
 - `mattbreyes` Matthew Reyes
 - `mattf4171` Matthew Fernandez
 - `hasanhaider2468` Muhammad Haider
-- `sanjana2000` Sanjana 
+- `sanjana2000` Sanjana Islam
 - `nazelik` Nazeli Mnatsakanyan
 - `jingsy119` Jing Sy
 
