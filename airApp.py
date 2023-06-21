@@ -1,5 +1,5 @@
 import psycopg2
-from flask import Flask, jsonify,render_template
+from flask import Flask, jsonify
 from datetime import datetime
 
 #################################################
@@ -13,7 +13,7 @@ conn = psycopg2.connect(database="postgres",
 cur = conn.cursor()
 
 
-conn.commit()
+# conn.commit()
 # cur.close()
 # conn.close()
 
@@ -40,6 +40,13 @@ def index():
 
 @airApp.route("/<selected_date>")
 def start(selected_date):
+
+    conn = psycopg2.connect(database="postgres",
+                            user="postgres",
+                            password="postgres",
+                            host="localhost",
+                            port="5432")
+    cur = conn.cursor()
     #city = city.capitalize()
     #query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population FROM us_aqi WHERE city_ascii = '{city}'"
     
@@ -66,19 +73,34 @@ def start(selected_date):
         
         # Append the current dictionary to the list
         array_of_rows.append(dict_of_row)
-        
-
-    # Find the earliest date in the database
-    #query1 = "SELECT MIN(date) FROM us_aqi"
-    #cur.execute(query1)
-    #min_date = cur.fetchall()
-    #min_date = str(min_date[0][0])
-  
-    conn.commit()
-    cur.close()
-    conn.close()
 
     return jsonify(array_of_rows)
+
+@airApp.route("/choropleth<selected_date>")
+def choropleth(selected_date):
+    conn = psycopg2.connect(database="postgres",
+                            user="postgres",
+                            password="postgres",
+                            host="localhost",
+                            port="5432")
+    cur = conn.cursor()
+    
+    query = f"SELECT aqi, state_id, lat, lng, population FROM us_aqi WHERE date = '{selected_date}'"
+    cur.execute(query)
+    rows1 = cur.fetchall()
+    
+    list = []
+    for row in rows1:
+        dict = {}
+        dict["aqi"] = row[0]
+        dict["state"] = row[1]
+        dict["lat"] = row[2]
+        dict["lng"] = row[3]
+        dict["population"] = row[4]
+        list.append(dict)
+
+
+    return jsonify(list)
 
 
 

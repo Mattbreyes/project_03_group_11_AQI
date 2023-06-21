@@ -10,7 +10,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(myMap);
 
 // Load the GeoJSON data.
-let geoData = "<flask api url link>"
+let geoData = "http://127.0.0.1:5000/1980-01-01"
 
 let geojson;
 

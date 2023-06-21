@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(myMap);
 
-let url = "<url>";
+let url = "http://127.0.0.1:5000/1980-01-01";
 
 d3.json(url).then(function(response) {
 
