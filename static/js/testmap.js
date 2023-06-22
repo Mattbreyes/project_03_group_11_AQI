@@ -33,10 +33,24 @@ let myMap = L.map("map", {
   
   });
 
-  function stuffToRezie(){
-    var h_window = $(window).height();
-    var h_map = h_window - 125;
-    $('#map_canvas').css('height', h_map);
-}
+  //pull all earthquakes data from the past 7 days
+let url2 = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
-$(window).on("resize", stuffToRezie).trigger('resize'); 
+//a GET request to the query URL/
+d3.json(url2).then(function(data) {
+    console.log(data)
+    
+    createMap(data);
+  });
+
+function createMap(data){
+  let Map = L.map("map2", {
+    center: [40.59, -112.11],
+    zoom: 4
+  });
+  
+  // Adding the tile layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(Map);
+};

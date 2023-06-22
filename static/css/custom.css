@@ -16,15 +16,11 @@ body {
   background-color: whitesmoke;
 }
 
-#dropdownMenuButton {
-  border: 1.5px solid grey;
-}
-
 #map {
   position: relative;
   border: 1.5px solid black;
   border-radius: 10px;
-  height: 75%;
+  height: 600px;
   width: 100%;
 }
 
@@ -32,7 +28,7 @@ body {
   position: relative;
   border: 1.5px solid black;
   border-radius: 10px;
-  height: 75%;
+  height: 600px;
   width: 100%;
 }
 
