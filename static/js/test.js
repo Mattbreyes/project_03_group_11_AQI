@@ -22,7 +22,7 @@ d3.json(url).then(function(data){
           }
         };
       
-        Plotly.newPlot("line-plot", trace1, layout1)
+        Plotly.newPlot("bar", trace1, layout1)
       }
 
         let trace2 = [{
@@ -40,11 +40,9 @@ d3.json(url).then(function(data){
             title: "OTU ID",
             }
         }
-        Plotly.newPlot("density-heat-map", trace2, layout2);
-  
+        Plotly.newPlot("bubble", trace2, layout2);
+ 
 
       init();
 });
-
-
 
