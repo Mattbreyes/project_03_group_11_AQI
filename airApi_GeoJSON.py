@@ -82,10 +82,11 @@ def start(selected_date):
  """
 @airApp.route("/<selected_date>")
 def start(selected_date):
+    
     #city = city.capitalize()
     #query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population FROM us_aqi WHERE city_ascii = '{city}'"
     
-    query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population, id FROM us_aqi WHERE date = '{selected_date}'"
+    query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population, id FROM us_aqi WHERE date = {selected_date}"
 
     cur.execute(query)
     rows = cur.fetchall()
