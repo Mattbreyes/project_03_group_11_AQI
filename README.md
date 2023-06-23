@@ -1,4 +1,4 @@
-# Project 3: Data Visualization of Meteorite Landings
+# Project 3: Data Visualization of the Effect of Wildfires on Air Quality in California (2013-2019)
 
 ## Collaborators
 - `mattbreyes` Matthew Reyes
