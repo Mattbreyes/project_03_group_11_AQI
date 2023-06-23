@@ -78,44 +78,44 @@ def index():
 
 #     return jsonify(array_of_rows)
 
-@airApp.route("/choropleth/<selected_date>/")
-def choropleth(selected_date):
-    conn = psycopg2.connect(database="postgres",
-                            user="postgres",
-                            password="postgres",
-                            host="localhost",
-                            port="5432")
-    cur = conn.cursor()
+# @airApp.route("/choropleth/<selected_date>/")
+# def choropleth(selected_date):
+#     conn = psycopg2.connect(database="postgres",
+#                             user="postgres",
+#                             password="postgres",
+#                             host="localhost",
+#                             port="5432")
+#     cur = conn.cursor()
     
-    query = f"SELECT aqi, state_id, lat, lng, population FROM us_aqi WHERE date = '{selected_date}'"
-    cur.execute(query)
-    rows1 = cur.fetchall()
+#     query = f"SELECT aqi, state_id, lat, lng, population FROM us_aqi WHERE date = '{selected_date}'"
+#     cur.execute(query)
+#     rows1 = cur.fetchall()
     
-#     geojson_data_point = {
-#        "type": "FeatureCollection",
-#        "name" : "AQI data",
-#        "properties": properties
-#    }
+# #     geojson_data_point = {
+# #        "type": "FeatureCollection",
+# #        "name" : "AQI data",
+# #        "properties": properties
+# #    }
 
-    list = []
-    for row in rows1:
-        dict = {}
-        dict["aqi"] = row[0]
-        dict["state"] = row[1]
-        dict["lat"] = row[2]
-        dict["lng"] = row[3]
-        dict["population"] = row[4]
-        list.append(dict)
+#     list = []
+#     for row in rows1:
+#         dict = {}
+#         dict["aqi"] = row[0]
+#         dict["state"] = row[1]
+#         dict["lat"] = row[2]
+#         dict["lng"] = row[3]
+#         dict["population"] = row[4]
+#         list.append(dict)
 
-    # properties = {
-    #     'aqi' : aqi,
-    #     'state' : state,
-    #     'lat' : lat,
-    #     'lng' : lng,
-    #     'population' : POPULATION
-    # }
+#     # properties = {
+#     #     'aqi' : aqi,
+#     #     'state' : state,
+#     #     'lat' : lat,
+#     #     'lng' : lng,
+#     #     'population' : POPULATION
+#     # }
 
-    return jsonify(list)
+#     return jsonify(list)
 
 
 

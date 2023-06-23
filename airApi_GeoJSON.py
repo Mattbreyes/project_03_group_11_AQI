@@ -35,7 +35,7 @@ def index():
     #     f"<h4> yyyy-mm-dd </h4>" 
     #     f"where 1980-01-01 <= yyyy-mm-dd <= 2022-05-31.<br><br>"
     # )
-    return render_template('index.html')
+    return render_template('index1.html')
 
 """ @airApp.route("/<selected_date>")
 def start(selected_date):
