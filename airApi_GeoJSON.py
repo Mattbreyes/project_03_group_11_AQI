@@ -7,7 +7,7 @@ import sys
 #################################################
 # Database Setup
 #################################################
-conn = psycopg2.connect(database="air_quality_db",
+conn = psycopg2.connect(database="postgres",
                             user="postgres",
                             password="postgres",
                             host="localhost",
@@ -85,85 +85,87 @@ def start(selected_date):
     
     #city = city.capitalize()
     #query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population FROM us_aqi WHERE city_ascii = '{city}'"
-    
-    query = f"SELECT   aqi, city_ascii, state_id, lat, lng, population, id FROM us_aqi WHERE date = '{selected_date}'"
+   
+    if "favicon" not in selected_date:
+        query = f"commit;SELECT   aqi, city_ascii, state_id, lat, lng, population, id FROM us_aqi WHERE date = '{selected_date}'"
 
-    cur.execute(query)
-    rows = cur.fetchall()
-    #print (rows)
-    # Create a list to store all the rows as a dictionary (list of dictionaries)
-    array_of_rows = []
+        cur.execute(query)
+        rows = cur.fetchall()
+        #print (rows)
+        # Create a list to store all the rows as a dictionary (list of dictionaries)
+        array_of_rows = []
 
-    # Create a dictionary for the current row
-    dict_of_row = {}
-
-    for row in rows:
-        # print(row, flush = True)
+        # Create a dictionary for the current row
         dict_of_row = {}
-        dict_of_row["aqi"] = row[0]
-        dict_of_row["city_ascii"] = row[1]
-        dict_of_row["state_id"] = row[2]
-        dict_of_row["lat"] = row[3]
-        dict_of_row["lng"] = row[4]
-        dict_of_row["population"] = row[5]
-        dict_of_row["id"] = row[6]
 
-        #dict_of_row["date"] = str(row[6])
-        #dict_of_row["date"] = row[6]
-        
-        # Append the current dictionary to the list
-        array_of_rows.append(dict_of_row)
+        for row in rows:
+            # print(row, flush = True)
+            dict_of_row = {}
+            dict_of_row["aqi"] = row[0]
+            dict_of_row["city_ascii"] = row[1]
+            dict_of_row["state_id"] = row[2]
+            dict_of_row["lat"] = row[3]
+            dict_of_row["lng"] = row[4]
+            dict_of_row["population"] = row[5]
+            dict_of_row["id"] = row[6]
 
-    # Find the earliest date in the database
-    #query1 = "SELECT MIN(date) FROM us_aqi"
-    #cur.execute(query1)
-    #min_date = cur.fetchall()
-    #min_date = str(min_date[0][0])
-  
-    ######################################################
-    # Convert to GeoJSON
+            #dict_of_row["date"] = str(row[6])
+            #dict_of_row["date"] = row[6]
+            
+            # Append the current dictionary to the list
+            array_of_rows.append(dict_of_row)
 
-    dict_of_GeoJSON = {"type": "FeatureCollection",
-                       "features": []
-                      }
+        # Find the earliest date in the database
+        #query1 = "SELECT MIN(date) FROM us_aqi"
+        #cur.execute(query1)
+        #min_date = cur.fetchall()
+        #min_date = str(min_date[0][0])
     
-    """ temp_dict_of_features = {"type": Feature,
-                              "propertoies": {},
-                              "geometry": {},
-                              "id": 0
-                            }
-     """
+        ######################################################
+        # Convert to GeoJSON
 
-    feature = {}
-    array_of_features = []
-
-    for item in array_of_rows:
-        feature = {}
-        feature = {
-            "properties": {
-                "aqi": item["aqi"],
-                "city_ascii": item["city_ascii"],
-                "state_id": item["state_id"],
-                "population": item["population"]
-
-            },
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    item["lng"], 
-                    item["lat"]
-                ]
-            },
-            "id": item["id"],
-        }
-        array_of_features.append(feature)
-
-    dict_of_GeoJSON["type"] = "FeatureCollection"
-    dict_of_GeoJSON["features"] = array_of_features
-
+        dict_of_GeoJSON = {"type": "FeatureCollection",
+                        "features": []
+                        }
         
-    return dict_of_GeoJSON
+        """ temp_dict_of_features = {"type": Feature,
+                                "propertoies": {},
+                                "geometry": {},
+                                "id": 0
+                                }
+        """
+
+        feature = {}
+        array_of_features = []
+
+        for item in array_of_rows:
+            feature = {}
+            feature = {
+                "properties": {
+                    "aqi": item["aqi"],
+                    "city_ascii": item["city_ascii"],
+                    "state_id": item["state_id"],
+                    "population": item["population"]
+
+                },
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        item["lng"], 
+                        item["lat"]
+                    ]
+                },
+                "id": item["id"],
+            }
+            array_of_features.append(feature)
+
+        dict_of_GeoJSON["type"] = "FeatureCollection"
+        dict_of_GeoJSON["features"] = array_of_features
+        
+            
+        return dict_of_GeoJSON
+    return {"ERROR": "DATE NEEDED"}
 
     
 """ conn.commit()
