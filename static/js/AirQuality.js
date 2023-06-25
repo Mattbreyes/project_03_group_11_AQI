@@ -106,7 +106,7 @@ function createMap(airQuality) {
   });
 
 
- 
+ /*
   function ChooseColor(aqi) {
     if (aqi >= 300) {
         color = "Maroon";
@@ -167,4 +167,5 @@ function createMap(airQuality) {
 
   // add legend to the map.
   legend.addTo(myMap);
+  */
 }
