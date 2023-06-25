@@ -70,7 +70,8 @@
   <!-- Our Javascripts -->
   <!-- Please save your js files in js folders and modify the name of your js files here -->
   <!-- <script src="js/test.js"></script> -->
-  <script src="JavaScript Codes/Heatmap.js"></script>
+  <script src="JavaScript Codes/bar.js"></script>
+
   <!-- <script src="Ja"></script>
   <script src="js/name-of-your-js-file-3.js"></script> -->
   
