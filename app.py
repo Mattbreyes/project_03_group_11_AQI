@@ -70,18 +70,9 @@ def start(selected_date='2000-01-01'):
             dict_of_row["lng"] = row[5]
             dict_of_row["population"] = row[6]
             dict_of_row["id"] = row[7]
-
-            #dict_of_row["date"] = str(row[6])
-            #dict_of_row["date"] = row[6]
             
             # Append the current dictionary to the list
             array_of_rows.append(dict_of_row)
-
-        # Find the earliest date in the database
-        #query1 = "SELECT MIN(date) FROM us_aqi"
-        #cur.execute(query1)
-        #min_date = cur.fetchall()
-        #min_date = str(min_date[0][0])
     
         ######################################################
         # Convert to GeoJSON
