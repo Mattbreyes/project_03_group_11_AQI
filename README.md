@@ -10,7 +10,15 @@ This project explores the relationship between population and air quality in the
 - `nazelik` Nazeli Mnatsakanyan
 - `jingsy119` Jing Sy
 ## Introduction
-Using the `Flask API` in conjunction with `HTML`,`Javascript`, and `CSS`, we created an interactive interface where users can specify dates to display the results of the analysis. Through the use of `PGAdmin` and `SQL`, we created a database to house the data and used the Flask API to fetch and run the analysis while using Javascript to create the visualizations. 
+Using the `Flask API` in conjunction with `HTML`,`Javascript`, and `CSS`, we created an interactive interface where users can specify dates to display the results of the analysis. Through the use of `PGAdmin` and `SQL`, we created a database to house the data and used the Flask API to fetch and run the analysis while using Javascript to create the visualizations.
+
+## Visualizations
+- `Bubble Plot`
+    - This graphic shows the population size in relation to the surrounding air quality of the city for a specific date.
+- `Bar Plot`
+    - This graphic shows the top 10 cities in terms of population size and their corresponding air quality rating.
+- `Line Plot`
+    - This graphic shows the top 10 cities in terms of population size and their corresponding air quality rating over the whole date range available in the database.
 
 To access the local Flask API, simply run the `app.py` file from the terminal.
 # Citation
