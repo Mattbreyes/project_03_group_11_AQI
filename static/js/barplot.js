@@ -11,7 +11,9 @@ function updateMap()
     if (xhr.readyState === 4 && xhr.status === 200)
     {
       var geoData = JSON.parse(xhr.responseText);
+      console.log('Cats Rule!');
       console.log(geoData.features);
+      Plotly.newPlot('visual2', geoData);
   };
   xhr.send();
   }

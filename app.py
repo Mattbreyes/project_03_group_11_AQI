@@ -163,8 +163,6 @@ def start(selected_date='2000-01-01'):
         return dict_of_GeoJSON
     return {"ERROR": "DATE NEEDED"}
 
-    
-
 if __name__ == '__main__':
     airApp.run(debug=True)
     
