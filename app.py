@@ -92,28 +92,48 @@ def start(selected_date='2000-01-01'):
         array_of_features = []
         for item in array_of_rows:
             # Iterate through the geojson file to input the geometry values as an array if the states match
-            for state in geojson_file['features']:
-                if state['properties']['name'] == item['state_name']:
-                    new_geometry = state['geometry']
-                    # print(new_geometry)
+            # for state in geojson_file['features']:
+            #     if state['properties']['name'] == item['state_name']:
+            #         new_geometry = state['geometry']
+            #         # print(new_geometry)
 
-                    new_geometry['type'] = 'MultiPolygon'
-                    print(new_geometry)
-                    feature = {}
-                    feature = {
-                        "properties": {
-                            "aqi": item["aqi"],
-                            "city_ascii": item["city_ascii"],
-                            "state_id": item["state_id"],
-                            "population": item["population"]
+            #         new_geometry['type'] = 'MultiPolygon'
+            #         print(new_geometry)
+            #         feature = {}
+            #         feature = {
+            #             "properties": {
+            #                 "aqi": item["aqi"],
+            #                 "city_ascii": item["city_ascii"],
+            #                 "state_id": item["state_id"],
+            #                 "population": item["population"]
 
-                        },
-                        "type": "Feature",
-                        "geometry": new_geometry,
-                        "id": item["id"],
-                    }
-                    array_of_features.append(feature)
-                    break
+            #             },
+            #             "type": "Feature",
+            #             "geometry": new_geometry,
+            #             "id": item["id"],
+            #         }
+            #         array_of_features.append(feature)
+            #         break
+            feature = {}
+            feature = {
+                "properties": {
+                    "aqi": item["aqi"],
+                    "city_ascii": item["city_ascii"],
+                    "state_id": item["state_id"],
+                    "population": item["population"]
+
+                },
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        item["lng"], 
+                        item["lat"]
+                    ]
+                },
+                "id": item["id"],
+            }
+            array_of_features.append(feature)
 
         dict_of_GeoJSON["type"] = "FeatureCollection"
         dict_of_GeoJSON["features"] = array_of_features
