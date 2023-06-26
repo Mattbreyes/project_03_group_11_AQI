@@ -8,7 +8,7 @@ function updateAll(entryNum){
 
     // an empty list to add all the different states to
     let state_list = []
-    let states = data.features.properties.states
+    let states = data.features.properties.state_id
     let aqi_values = data.features.properties.aqi
 
     //loops through all of the states and only adds the state if it is not already in the list
