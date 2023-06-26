@@ -33,8 +33,9 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-center p-2">
-        <label for="start"><b>Start month:</b>&nbsp</label>
-        <input type="date" id="inputDate" name="inputDate">
+        <br>
+        <label for="start"><h3>Start month:</h3>&nbsp</label>
+        <input type="date" id="inputDate" name="inputDate" value="1980-01-01">
         <button type="button" class='btn btn-secondary'id="selected_date_button">Go</button>
     </div>
     </div>
@@ -53,7 +54,10 @@
     <br>
     
     <br>
-
+    <div>
+        <div id="barPlot"></div>
+        tt
+    </div>
     <div class="row">
       <div class="col-md-12">
         <div id="map2"></div>
@@ -80,9 +84,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Our Javascripts -->
-    <!-- <script src="{{url_for('static', filename='style.css')}}"></script> -->
     <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
     <script src="{{url_for('static', filename='js/barplot.js')}}"></script>
+
     <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
     
 
