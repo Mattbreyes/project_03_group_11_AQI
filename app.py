@@ -158,14 +158,11 @@ def start(selected_date='2000-01-01'):
         dict_of_GeoJSON["type"] = "FeatureCollection"
         dict_of_GeoJSON["features"] = array_of_features
         query_visual_2 = f"commit;SELECT aqi, city_ascii, population, density FROM us_aqi WHERE date = '{selected_date}' ORDER BY population DESC LIMIT 10;"
+        # Call 2nd visual with query 
         visual_2(query_visual_2)
         return dict_of_GeoJSON
     return {"ERROR": "DATE NEEDED"}
-    
-""" conn.commit()
-    cur.close()
-    conn.close()
- """    #return array_of_rows
+
     
 
 if __name__ == '__main__':
