@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>US Air Quality</title>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -21,7 +24,7 @@
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
         <div class="maintxt">
-          <img src="https://assets3.thrillist.com/v1/image/3122233/1584x1054/crop;jpeg_quality=60.jpg" alt="Nashville Skyline">
+          <img class='nashville'src="https://assets3.thrillist.com/v1/image/3122233/1584x1054/crop;jpeg_quality=60.jpg" alt="Nashville Skyline">
             <h1 class="carousel-caption">United States Air Quality</h1>
             <p class="carousel-caption">Welcome to the visualizations of US air quality 1980-2023</p>
           </span>
@@ -29,44 +32,25 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-3">
-        <div class="aqi-chart">
-          <h4><b>Air Quality Index (AQI) Levels</b></h4>
-          <img src="https://www.lrapa.org/wp-content/uploads/2022/10/AQI-Graphic-747x1024.png" alt="AQI Level">
+    <div class="d-flex align-items-center justify-content-center p-2">
+        <label for="start"><b>Start month:</b>&nbsp</label>
+        <input type="date" id="inputDate" name="inputDate">
+        <button type="button" class='btn btn-secondary'id="selected_date_button">Go</button>
+    </div>
+    </div>
+
+    <div class="container border border-warning"> <!--TODO rm border, have left and right columns touch edge of screens respectively-->
+        <div class="row p-1">
+            <div class="col-sm-2">
+                <h4><b>Air Quality Index (AQI) Levels</b></h4>
+                <img src="https://www.lrapa.org/wp-content/uploads/2022/10/AQI-Graphic-747x1024.png" alt="AQI Level">
+            </div>
+            <div class="col-sm-10">
+                <div id="map"></div>
+            </div>
         </div>
-      </div>
-
-          <!--  CSS I added -->
-
-      <label for="start">Start month:</label>
-      <input type="date" id="inputDate" name="inputDate">
-      <button type="button" id="selected_date_button">Go</button>
-
+    </div>
     <br>
-
-      <!-- <div class="col-md-9">
-        <div class="dropdown">
-          <h5><strong>Year or Decade</strong></h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-        <div id="bar"></div>
-      </div> -->
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div id="map"></div>
-      </div>
-    </div>
     
     <br>
 
@@ -92,16 +76,14 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Our Javascripts -->
     <!-- <script src="{{url_for('static', filename='style.css')}}"></script> -->
     <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
     <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
     
-    <!-- Our Javascripts -->
-    <!-- Please save your js files in js folders and modify the name of your js files here -->
-    <!-- <script src="js/test.js"></script> -->
-    <!-- <script type="text/javascript" src="Templates/Choropleth.js"></script> -->
-    <!-- <script src="js/name-of-your-js-file-2.js"></script>
-    <script src="js/name-of-your-js-file-3.js"></script> -->
 
 </body>
 
