@@ -42,50 +42,33 @@ def index():
 def visual_2(query):
     cur.execute(query)
     rows = cur.fetchall()
+    # print({*rows})
     array_of_rows_visual_2 = []
     dict_of_row_visual_2 = {}
 
     for row in rows:
-            # print(row, flush = True)
-            dict_of_row_visual_2 = {}
-            dict_of_row_visual_2["aqi"] = row[0]
-            dict_of_row_visual_2["city_ascii"] = row[1]
-            dict_of_row_visual_2["population"] = row[2]
-            dict_of_row_visual_2["density"] = row[3]
-            
-            # Append the current dictionary to the list
-            array_of_rows_visual_2.append(dict_of_row_visual_2)
-    dict_of_GeoJSON = {"type": "FeatureCollection",
-                        "features": []
-                        }
+        # print(row, flush = True)
+        dict_of_row_visual_2 = {}
+        dict_of_row_visual_2["aqi"] = row[0]
+        dict_of_row_visual_2["city_ascii"] = row[1]
+        dict_of_row_visual_2["population"] = row[2]
+        dict_of_row_visual_2["density"] = row[3]
+        
+        # Append the current dictionary to the list
+        array_of_rows_visual_2.append(dict_of_row_visual_2)
+ 
+    print('Type: ',type(array_of_rows_visual_2))
+    return (array_of_rows_visual_2)
 
-    feature = {}
-    array_of_features = []
-
-    for item in array_of_rows_visual_2:
-        feature = {}
-        feature = {
-            "properties": {
-                "aqi": item["aqi"],
-                "city_ascii": item["city_ascii"],
-                "population": item["population"]
-
-            },
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    None
-                ]
-            },
-        }
-        array_of_features.append(feature)
-    dict_of_GeoJSON["type"] = "FeatureCollection"
-    dict_of_GeoJSON["features"] = array_of_features
-    print(dict_of_GeoJSON)
-    print('visual 2')
-    return dict_of_GeoJSON
-
+# End point for barplot
+@airApp.route("/bar/<selected_date>")
+def barplot(selected_date='2000-01-01'):
+    if "favicon" not in selected_date:
+        query_visual_2 = f"commit;SELECT aqi, city_ascii, population, density FROM us_aqi WHERE date = '{selected_date}' ORDER BY population DESC LIMIT 10;"
+        json_data = visual_2(query_visual_2)
+        # cur.close()
+        return jsonify(json_data)
+    return {"ERROR": "DATE NEEDED"}
 
 @airApp.route("/<selected_date>")
 def start(selected_date='2000-01-01'):
@@ -157,10 +140,10 @@ def start(selected_date='2000-01-01'):
 
         dict_of_GeoJSON["type"] = "FeatureCollection"
         dict_of_GeoJSON["features"] = array_of_features
-        query_visual_2 = f"commit;SELECT aqi, city_ascii, population, density FROM us_aqi WHERE date = '{selected_date}' ORDER BY population DESC LIMIT 10;"
-        # Call 2nd visual with query 
-        visual_2(query_visual_2)
-        return dict_of_GeoJSON
+        # # Call 2nd visual with query 
+        # visual_2(query_visual_2)
+        # cur.close()
+        return dict_of_GeoJSON #, visual_2(query_visual_2) )
     return {"ERROR": "DATE NEEDED"}
 
     
