@@ -1,0 +1,40 @@
+// Creating the map object
+let myMap = L.map("map", {
+  center: [37.7, 100.95],
+  zoom: 11
+});
+
+// Adding the tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(myMap);
+
+
+// Assemble the API query URL.
+let url = ""
+
+// Get the data with d3.
+d3.json(url).then(function(response) {
+
+  // Create a new marker cluster group.
+  let markers = L.marker();
+
+  // Loop through the data.
+  for (let i = 0; i < response.length; i++) {
+
+    // Set the data location property to a variable.
+    let location = response[i].geometry;
+
+    // Check for the location property.
+    if (location) {
+
+      // Add a new marker to the cluster group, and bind a popup.
+      markers.addLayer(L.marker([location.coordinates[0], location.coordinates[1]])
+        .bindPopup("City: " + response[i].properties.city_ascii + " Population: " + response[i].properties.population));
+    }
+
+  }
+  // Add our marker cluster layer to the map.
+  myMap.addLayer(markers);
+
+});
