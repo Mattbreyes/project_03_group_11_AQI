@@ -1,0 +1,76 @@
+img {
+  height: 350px;
+  width: 100%;
+  opacity: 0.85;
+}
+
+h1 {
+  top: 35%;
+  font-size: 5em;
+  color: #1B2631 !important;
+}
+
+h5 {
+  font-size: 2em;
+  font-style: italic;
+}
+
+body {
+  background-color: #EBF5FB  ;
+}
+
+#map {
+  position: relative;
+  border: 1.5px solid black;
+  border-radius: 10px;
+  height: 600px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  font: 1rem 'Fira Sans', sans-serif;
+  font-size: 1em;
+}
+
+.d-flex {
+  font-size: 1.5em;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+
+
+/* New added */
+/*
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+*/
+.legend {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.legend div {
+  margin-bottom: 5px;
+}
+
+.legend i {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+}

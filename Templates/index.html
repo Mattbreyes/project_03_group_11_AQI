@@ -12,7 +12,7 @@
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossorigin=""/>
   <!-- Our custom CSS -->
-  <link rel="stylesheet" type="text/css" href="../static/css/custom.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       </div>
       <div class="col-md-9">
         <div class="dropdown">
-          <h5><strong>Year or Decade</strong></h5>
+          <h5><strong>Population</strong></h5>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
         </div>
         <div id="bar"></div>
@@ -49,7 +49,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div id="bubble"></div>
+        <div id="choropleth"></div>
       </div>
     </div>
 
@@ -57,18 +57,10 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div id="map"></div>
+        <div id="heatmap"></div>
       </div>
     </div>
     
-    <br>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div id="map2"></div>
-      </div>
-    </div>
-
     <br>
 
   </div>
@@ -82,18 +74,12 @@
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
     <!-- Our Javascripts -->
-    <!-- <script src="{{url_for('static/js', filename='style.css')}}"></script> -->
-    <script src="{{url_for('static/js', filename='Heatmap.js')}}"></script>
-    <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
-  
-    <!-- Our Javascripts -->
-    <!-- Please save your js files in js folders and modify the name of your js files here -->
-    <script src="../static/js/test.js"></script>
-    <script src="../static/js/testmap.js"></script>
-    <!-- <script src="../static/js/name-of-your-js-file.js"></script>
-    <script src="../static/js/name-of-your-js-file-2.js"></script>
-    <script src="../static/js/name-of-your-js-file-3.js"></script> -->
-    
+    <!-- <script src="{{url_for('static/js', filename='bar.js')}}"></script>
+    <script src="{{url_for('static/js', filename='heatmap.js')}}"></script> -->
+    <script src="../static/js/bar.js"></script>
+    <script src="../static/js/heatmap.js"></script>
+    <script src="../static/js/choropleth.js"></script>
+      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 

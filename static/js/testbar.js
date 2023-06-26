@@ -21,25 +21,8 @@ function updateAll(entryNum){
         tickprefix: "OTU ",
       }
     }
-    Plotly.newPlot("bar", barData, barLayout);
+    Plotly.newPlot("plot2", barData, barLayout);
 
-    ///////////////// Updates the Bubble Chart ////////////////////////
-    let bubbleData = [{
-      x: data.samples[entryNum].otu_ids,
-      y: data.samples[entryNum].sample_values,
-      text: data.samples[entryNum].otu_labels,
-      mode: "markers",
-      marker: {
-        color: data.samples[entryNum].otu_ids,
-        size: data.samples[entryNum].sample_values
-      }
-    }];
-    let bubbleLayout = {
-      xaxis:{
-        title: "OTU ID",
-      }
-    }
-    Plotly.newPlot("bubble", bubbleData, bubbleLayout);
   });
 }
 
