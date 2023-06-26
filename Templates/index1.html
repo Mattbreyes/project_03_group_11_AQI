@@ -12,7 +12,7 @@
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""/>
     <!-- Our custom CSS -->
-    <link rel="stylesheet" type="text/css" href="../static/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
   </head>
 
 <body>
@@ -36,9 +36,13 @@
           <img src="https://www.lrapa.org/wp-content/uploads/2022/10/AQI-Graphic-747x1024.png" alt="AQI Level">
         </div>
       </div>
-    <label for="start">Start month:</label>
 
-      <input type="date">
+      <label for="start">Start month:</label>
+      <input type="date" id="inputDate" name="inputDate" value="1980-01-01">
+      
+
+      <button type="button" id="selected_date_button">Go</button>
+      <!--  ---------------------------------------------------- -->
     <br>
 
       <div class="col-md-9">
@@ -89,7 +93,7 @@
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
     <!-- <script src="{{url_for('static', filename='style.css')}}"></script> -->
-    <script src="{{url_for('static', filename='js/Choropleth.js')}}"></script>
+    <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
     <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
     
     <!-- Our Javascripts -->
