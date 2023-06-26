@@ -38,6 +38,54 @@ def index():
     # )
     return render_template('index1.html')
 
+# Helper Fn to get the visual for our box plot
+def visual_2(query):
+    cur.execute(query)
+    rows = cur.fetchall()
+    array_of_rows_visual_2 = []
+    dict_of_row_visual_2 = {}
+
+    for row in rows:
+            # print(row, flush = True)
+            dict_of_row_visual_2 = {}
+            dict_of_row_visual_2["aqi"] = row[0]
+            dict_of_row_visual_2["city_ascii"] = row[1]
+            dict_of_row_visual_2["population"] = row[2]
+            dict_of_row_visual_2["density"] = row[3]
+            
+            # Append the current dictionary to the list
+            array_of_rows_visual_2.append(dict_of_row_visual_2)
+    dict_of_GeoJSON = {"type": "FeatureCollection",
+                        "features": []
+                        }
+
+    feature = {}
+    array_of_features = []
+
+    for item in array_of_rows_visual_2:
+        feature = {}
+        feature = {
+            "properties": {
+                "aqi": item["aqi"],
+                "city_ascii": item["city_ascii"],
+                "population": item["population"]
+
+            },
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    None
+                ]
+            },
+        }
+        array_of_features.append(feature)
+    dict_of_GeoJSON["type"] = "FeatureCollection"
+    dict_of_GeoJSON["features"] = array_of_features
+    print(dict_of_GeoJSON)
+    print('visual 2')
+    return dict_of_GeoJSON
+
 
 @airApp.route("/<selected_date>")
 def start(selected_date='2000-01-01'):
@@ -81,39 +129,11 @@ def start(selected_date='2000-01-01'):
                         "features": []
                         }
         
-        """ temp_dict_of_features = {"type": Feature,
-                                "propertoies": {},
-                                "geometry": {},
-                                "id": 0
-                                }
-        """
 
         feature = {}
         array_of_features = []
         for item in array_of_rows:
             # Iterate through the geojson file to input the geometry values as an array if the states match
-            # for state in geojson_file['features']:
-            #     if state['properties']['name'] == item['state_name']:
-            #         new_geometry = state['geometry']
-            #         # print(new_geometry)
-
-            #         new_geometry['type'] = 'MultiPolygon'
-            #         print(new_geometry)
-            #         feature = {}
-            #         feature = {
-            #             "properties": {
-            #                 "aqi": item["aqi"],
-            #                 "city_ascii": item["city_ascii"],
-            #                 "state_id": item["state_id"],
-            #                 "population": item["population"]
-
-            #             },
-            #             "type": "Feature",
-            #             "geometry": new_geometry,
-            #             "id": item["id"],
-            #         }
-            #         array_of_features.append(feature)
-            #         break
             feature = {}
             feature = {
                 "properties": {
@@ -137,7 +157,8 @@ def start(selected_date='2000-01-01'):
 
         dict_of_GeoJSON["type"] = "FeatureCollection"
         dict_of_GeoJSON["features"] = array_of_features
-
+        query_visual_2 = f"commit;SELECT aqi, city_ascii, population, density FROM us_aqi WHERE date = '{selected_date}' ORDER BY population DESC LIMIT 10;"
+        visual_2(query_visual_2)
         return dict_of_GeoJSON
     return {"ERROR": "DATE NEEDED"}
     
