@@ -16,6 +16,10 @@
     crossorigin=""/>
     <!-- Our custom CSS -->
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+    <!-- animate library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   </head>
 
 <body>
@@ -25,7 +29,7 @@
       <div class="col-md-12 jumbotron text-center">
         <div class="maintxt">
           <img class='nashville'src="https://assets3.thrillist.com/v1/image/3122233/1584x1054/crop;jpeg_quality=60.jpg" alt="Nashville Skyline">
-            <h1 class="carousel-caption">United States Air Quality</h1>
+            <h1 class="carousel-caption animate__animated animate__pulse animate__repeat-3">United States Air Quality</h1>
             <p class="carousel-caption">Welcome to the visualizations of US air quality 1980-2023</p>
           </span>
         </div>
@@ -54,10 +58,11 @@
     <br>
     
     <br>
-    <div>
-        <div id="barPlot"></div>
-        tt
+
+    <div class="container justify-content-md-center border border-warning">
+        <div id="barPlot" class="justify-content-md-center"></div>
     </div>
+
     <div class="row">
       <div class="col-md-12">
         <div id="map2"></div>
@@ -86,7 +91,15 @@
     <!-- Our Javascripts -->
     <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
     <script src="{{url_for('static', filename='js/barplot.js')}}"></script>
+    <script src="{{url_for('static', filename='js/stable.js')}}"></script>
+    <!-- replicate npm js -->
+    <!-- <script src="{{url_for('static', filename='node_modules/replicate/index.js')}}"></script> -->
 
+    <!-- Replicate import needed -->
+    <script type="module">
+        import Replicate from "https://cdn.jsdelivr.net/gh/nicholascelestin/replicate-js/replicate.js"
+        let replicate = new Replicate({proxyUrl: 'http://localhost:3000/api'});
+    </script>
     <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
     
 

@@ -30,12 +30,6 @@ airApp = Flask(__name__)
 
 @airApp.route("/")
 def index():
-    # return(
-    #     f"4. To get the values of aqi, city_ascii, state_id, lat, lng  and population for the <b>specific date</b> of your choice,\
-    #         append the date to the current URL in the following format:"
-    #     f"<h4> yyyy-mm-dd </h4>" 
-    #     f"where 1980-01-01 <= yyyy-mm-dd <= 2022-05-31.<br><br>"
-    # )
     return render_template('index1.html')
 
 # Helper Fn to get the visual for our box plot
@@ -146,7 +140,9 @@ def start(selected_date='2000-01-01'):
         return dict_of_GeoJSON #, visual_2(query_visual_2) )
     return {"ERROR": "DATE NEEDED"}
 
-    
+@airApp.route('/test/stableDiff')
+def stableDiff():
+    return jsonify(1)
 
 if __name__ == '__main__':
     airApp.run(debug=True)
