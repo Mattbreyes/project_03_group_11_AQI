@@ -18,10 +18,10 @@ Using the `Flask API` in conjunction with `HTML`,`Javascript`, and `CSS`, we cre
     - ![bubble](images/bubble_plot.png)
 - `Bar Plot`
     - This graphic shows the top 10 cities in terms of population size and their corresponding air quality rating.
-    - PICTURE
+    - ![bar](images/bar_plot.png)
 - `Line Plot`
-    - This graphic shows the 5 year evolution of air quality in the top cities within California.
-    - PICTURE
+    - This graphic shows the 5 year evolution of air quality in certain cities.
+    - ![bar](images/line_plot.png)
 
 To access the local Flask API, simply run the `app.py` file from the terminal.
 # Citation
