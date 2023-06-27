@@ -24,13 +24,13 @@
 
 <body>
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
+      <div class="col-md-12 text-center">
         <div class="maintxt">
           <img class='nashville rounded-circle'src="https://assets3.thrillist.com/v1/image/3122233/1584x1054/crop;jpeg_quality=60.jpg" alt="Nashville Skyline">
             <h1 class="carousel-caption animate__animated animate__pulse animate__repeat-3">United States Air Quality</h1>
-            <p class="carousel-caption">Welcome to the visualizations of US air quality 1980-2023</p>
+            <p class="carousel-caption h4">Welcome to the visualizations of US air quality 1980-2023</p>
           </span>
         </div>
       </div>
@@ -44,9 +44,9 @@
     </div>
     </div>
 
-    <div class="container border border-warning"> <!--TODO rm border, have left and right columns touch edge of screens respectively-->
+    <div class="container-fluid border rounded"> <!--TODO rm border, have left and right columns touch edge of screens respectively-->
         <div class="row p-1">
-            <div class="col-sm-2">
+            <div class="col-md-2 align-self-center">
                 <h4><b>Air Quality Index (AQI) Levels</b></h4>
                 <img src="https://www.lrapa.org/wp-content/uploads/2022/10/AQI-Graphic-747x1024.png" alt="AQI Level">
             </div>
@@ -59,14 +59,12 @@
     
     <br>
 
-    <div class="container justify-content-md-center border border-warning">
+    <div class="container-fluid justify-content-md-center border border-warning">
         <div id="barPlot" class="justify-content-md-center"></div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div id="map2"></div>
-      </div>
+    <div class="container justify-content-md-center border border-warning">
+        <div id="linePlot" class="justify-content-md-center"></div>
     </div>
 
     <br>
@@ -88,18 +86,19 @@
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <!-- Replicate import needed -->
+    <script type="module">
+        import Replicate from "https://cdn.jsdelivr.net/gh/nicholascelestin/replicate-js/replicate.js"
+        // let replicate = new Replicate({proxyUrl: 'http://localhost:3000/api'});
+    </script>
     <!-- Our Javascripts -->
     <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
     <script src="{{url_for('static', filename='js/barplot.js')}}"></script>
+    <script src="{{url_for('static', filename='js/linePlot.js')}}"></script>
     <script src="{{url_for('static', filename='js/stable.js')}}"></script>
     <!-- replicate npm js -->
     <!-- <script src="{{url_for('static', filename='node_modules/replicate/index.js')}}"></script> -->
 
-    <!-- Replicate import needed -->
-    <script type="module">
-        import Replicate from "https://cdn.jsdelivr.net/gh/nicholascelestin/replicate-js/replicate.js"
-        let replicate = new Replicate({proxyUrl: 'http://localhost:3000/api'});
-    </script>
     <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
     
 
