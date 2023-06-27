@@ -1,11 +1,11 @@
 // TODO: RUN D3 SEQUENTIALLY
 
-console.log('Made it linePlot!');
+// console.log('Made it linePlot!');
 updateLinePlot();
 // When clicked on "Go" button, the selected date will be passed to the updateMap function
 // to generate new overlay map with updated air quality data.
 document.getElementById('selected_date_button').addEventListener('click', function() {
-  console.log('clicked');
+//   console.log('clicked');
   updateLinePlot();
 })
 
@@ -41,174 +41,233 @@ function updateLinePlot()
     // Send a request to the Flask app with the selected date
 d3.json(url).then(function(data) {
         sequential(11)
-        console.log('lineplot->',data);
+        // console.log('lineplot->',data);
         initialData = data;
         // var x = data['city_ascii'];
-        for (let i=0; i<data.length; i++){
+        for (let i=0; i<initialData.length; i++){
             // 5 lines 
-            stateArray.push(data[i].city_ascii);
-            row1x.push(data[i].Date);
-            row1y.push(data[i].aqi);
+            stateArray.push(initialData[i].city_ascii);
+            row1x.push(initialData[i].Date);
+            row1y.push(initialData[i].aqi);
         }
         console.log('stateArray',stateArray);
         console.log('row1x',row1x);
-    });
+        console.log('row1y', row1y);
+        // 1 yr later data
+        var url = '/lineplot/' + selectedDate;
+        // Send a request to the Flask app with the selected date
+    d3.json(url).then(function(data) {
+        sequential(12)
+            // console.log('lineplot 1 YEAR->',data);
+            oneYrData = data;    
+            
+            // temp array to hold each states values
+            var states = [];
+            // Iterate over +1 year
+            for( let i=0; i<stateArray.length; i++){
+                for (let j=0; j< oneYrData.length; j++){
+                    if (stateArray[i] == oneYrData[j].city_ascii){
+                        row2x.push(oneYrData[j].Date);
+                        row2y.push(oneYrData[j].aqi);
+                    }
+                }
+            }
+            // 2 yr later data
+            var url = '/lineplot2/' + selectedDate;
+            // Send a request to the Flask app with the selected date
+        d3.json(url).then(function(data) {
+            sequential(13)
+                // console.log('lineplot 2 YEAR->',data);
+                twoYrData = data;
 
-    // 1 yr later data
-    var url = '/lineplot/' + selectedDate;
-    // Send a request to the Flask app with the selected date
-d3.json(url).then(function(data) {
-    sequential(12)
-        console.log('lineplot 1 YEAR->',data);
-        oneYrData = data;    
+                for( let i=0; i<stateArray.length; i++){
+                    for (let j=0; j< twoYrData.length; j++){
+                        if (stateArray[i] == twoYrData[j].city_ascii){
+                            row3x.push(twoYrData[j].Date);
+                            row3y.push(twoYrData[j].aqi);
+                        }
+                    }
+                }
+
+                // 3 yr later data
+                var url = '/lineplot3/' + selectedDate;
+                // Send a request to the Flask app with the selected date
+            d3.json(url).then(function(data) {
+                sequential(14)
+                    // console.log('lineplot 3 YEAR->',data);
+                    threeYrData = data;
+
+                    for( let i=0; i<stateArray.length; i++){
+                        for (let j=0; j< threeYrData.length; j++){
+                            if (stateArray[i] == threeYrData[j].city_ascii){
+                                row4x.push(threeYrData[j].Date);
+                                row4y.push(threeYrData[j].aqi);
+                            }
+                        }
+                    }
+                    // 4 yr later data
+                    var url = '/lineplot4/' + selectedDate;
+                    // Send a request to the Flask app with the selected date
+                d3.json(url).then(function(data) {
+                    sequential(15)
+                        // console.log('lineplot 4 YEAR->',data);
+                        fourYrData = data;
+                        for( let i=0; i<stateArray.length; i++){
+                            for (let j=0; j< fourYrData.length; j++){
+                                if (stateArray[i] == fourYrData[j].city_ascii){
+                                    row5x.push(fourYrData[j].Date);
+                                    row5y.push(fourYrData[j].aqi);
+                                }
+                            }
+                        }
+
+                        // 5 yr later data
+                        var url = '/lineplot5/' + selectedDate;
+                        // Send a request to the Flask app with the selected date
+                    d3.json(url).then(function(data) {
+                        sequential(16)
+                            // console.log('lineplot 5 YEAR->',data);
+                            fiveYrData = data;
+                            for( let i=0; i<stateArray.length; i++){
+                                for (let j=0; j< fiveYrData.length; j++){
+                                    if (stateArray[i] == fiveYrData[j].city_ascii){
+                                        row6x.push(fiveYrData[j].Date);
+                                        row6y.push(fiveYrData[j].aqi);
+                                    }
+                                }
+                            }
+                            console.log('row6x',row6x);
+                        });
+
+                        // Logic to go through rows and split it up to proper trace data with same length/size
+                        // EX: 
+                        //      x: [ ['Tue, 01 Jan 1980 08:00:00 GMT', 'Tue, 01 Jan 1981 08:00:00 GMT', ... , 'Tue, 01 Jan 1985 08:00:00 GMT'], ... ]
+                        //      y: [ [ 128, 120, ... , 140] , ... ]
+                        // Trace for the Data
+                        // first elements in rows are w/r to order of stateArray
+                        var dateMatrix = [row1x,row2x, row3x, row4x, row5x, row6x];
+                        var aqiMatrix = [row1y,row2y, row3y, row4y, row5y, row6y];
+                        console.log('dateMatrix',dateMatrix);
+                        console.log('aqiMatrix',aqiMatrix);
+                        
+                        var trace1x = [];
+                        var trace1y = [];
+                        var trace2x = [];
+                        var trace2y = [];
+                        var trace3x = [];
+                        var trace3y = [];
+                        var trace4x = [];
+                        var trace4y = [];
+                        var trace5x = [];
+                        var trace5y = [];
+                        for (let i=0; i<dateMatrix.length; i++){
+                            for (let j = 0; j<aqiMatrix.length; j++){
+                                if (j == 0){
+                                    // console.log('j==0',dateMatrix[i][0]);
+                                    trace1x.push(dateMatrix[i][0]);
+                                    trace1y.push(aqiMatrix[i][0]);
+                                
+                                }
+                                if (j == 1){
+                                    // console.log('j==0',dateMatrix[i][1]);
+                                    trace2x.push(dateMatrix[i][1]);
+                                    trace2y.push(aqiMatrix[i][1]);
+                                
+                                }
+                                if (j == 2){
+                                    // console.log('j==0',dateMatrix[i][1]);
+                                    trace3x.push(dateMatrix[i][2]);
+                                    trace3y.push(aqiMatrix[i][2]);
+                                
+                                }
+                                if (j == 3){
+                                    // console.log('j==0',dateMatrix[i][1]);
+                                    trace4x.push(dateMatrix[i][3]);
+                                    trace4y.push(aqiMatrix[i][3]);
+                                
+                                }
+                                if (j == 4){
+                                    // console.log('j==0',dateMatrix[i][1]);
+                                    trace5x.push(dateMatrix[i][4]);
+                                    trace5y.push(aqiMatrix[i][4]);
+                                
+                                }
+                                
+                                
+                            }
+                            // console.log(i);
+                            
+                            
+                        }
+
+                        let trace1 = {
+                            x: trace1x,
+                            y: trace1y,
+                            type: 'scatter',
+                            name: stateArray[0],
+                            line: {
+                            width: 3
+                            }
+                        };
+                        let trace2 = {
+                            x: trace2x,
+                            y: trace2y,
+                            type: 'scatter',
+                            name: stateArray[1],
+                            line: {
+                            width: 3
+                            }
+                        };
+                        let trace3 = {
+                            x: trace3x,
+                            y: trace3y,
+                            type: 'scatter',
+                            name: stateArray[2],
+                            line: {
+                            width: 3
+                            }
+                        };
+                        let trace4 = {
+                            x: trace4x,
+                            y: trace4y,
+                            type: 'scatter',
+                            name: stateArray[3],
+                            line: {
+                            width: 3
+                            }
+                        };
+                        let trace5 = {
+                            x: trace5x,
+                            y: trace5y,
+                            type: 'scatter',
+                            name: stateArray[4],
+                            line: {
+                            width: 3
+                            }
+                        };
+                        
+                        console.log('trace1->',trace1);
+                        // Data trace array
+                        let traceData = [trace1, trace2, trace3, trace4, trace5];
+
+                        // Apply title to the layout
+                        let layout = {
+                            title: "AQI over time"
+                        };
+                        console.log('traceData',traceData)
+                        // Render the plot to the div tag with id "plot"
+                        Plotly.newPlot("linePlot", traceData, layout);
+                });
+                
+            });
+            
+            });
+            
+            
+        });
         
-        // temp array to hold each states values
-        var states = [];
-        // Iterate over +1 year
-        for( let i=0; i<stateArray.length; i++){
-            for (let j=0; j< oneYrData.length; j++){
-                if (stateArray[i] == oneYrData[j].city_ascii){
-                    row2x.push(oneYrData[j].Date);
-                    row2y.push(oneYrData[j].aqi);
-                }
-            }
-        }
-        
     });
-    // 2 yr later data
-    var url = '/lineplot2/' + selectedDate;
-    // Send a request to the Flask app with the selected date
-d3.json(url).then(function(data) {
-    sequential(13)
-        console.log('lineplot 2 YEAR->',data);
-        twoYrData = data;
 
-        for( let i=0; i<stateArray.length; i++){
-            for (let j=0; j< twoYrData.length; j++){
-                if (stateArray[i] == twoYrData[j].city_ascii){
-                    row3x.push(twoYrData[j].Date);
-                    row3y.push(twoYrData[j].aqi);
-                }
-            }
-        }
-
-    });
-    // 3 yr later data
-    var url = '/lineplot3/' + selectedDate;
-    // Send a request to the Flask app with the selected date
-d3.json(url).then(function(data) {
-    sequential(14)
-        console.log('lineplot 3 YEAR->',data);
-        threeYrData = data;
-
-        for( let i=0; i<stateArray.length; i++){
-            for (let j=0; j< threeYrData.length; j++){
-                if (stateArray[i] == threeYrData[j].city_ascii){
-                    row4x.push(threeYrData[j].Date);
-                    row4y.push(threeYrData[j].aqi);
-                }
-            }
-        }
-    });
-    // 4 yr later data
-    var url = '/lineplot4/' + selectedDate;
-    // Send a request to the Flask app with the selected date
-d3.json(url).then(function(data) {
-    sequential(15)
-        console.log('lineplot 4 YEAR->',data);
-        fourYrData = data;
-        for( let i=0; i<stateArray.length; i++){
-            for (let j=0; j< fourYrData.length; j++){
-                if (stateArray[i] == fourYrData[j].city_ascii){
-                    row5x.push(fourYrData[j].Date);
-                    row5y.push(fourYrData[j].aqi);
-                }
-            }
-        }
-    });
-    // 5 yr later data
-    var url = '/lineplot5/' + selectedDate;
-    // Send a request to the Flask app with the selected date
-d3.json(url).then(function(data) {
-    sequential(16)
-        console.log('lineplot 5 YEAR->',data);
-        fiveYrData = data;
-        for( let i=0; i<stateArray.length; i++){
-            for (let j=0; j< fiveYrData.length; j++){
-                if (stateArray[i] == fiveYrData[j].city_ascii){
-                    row6x.push(fiveYrData[j].Date);
-                    row6y.push(fiveYrData[j].aqi);
-                }
-            }
-        }
-        console.log('row6x',row6x);
-    });
     
-    // Trace for the Data
-    let trace1 = {
-        x: row1x,
-        y: row1y,
-        type: 'scatter'
-        // name: stateArray[0],
-        // line: {
-        // width: 3
-        // }
-    };
-    let trace2 = {
-        x: row2x,
-        y: row2y,
-        type: 'scatter'
-        // name: stateArray[1],
-        // line: {
-        // width: 3
-        // }
-    };
-    let trace3 = {
-        x: row3x,
-        y: row3y,
-        type: 'scatter'
-        // name: stateArray[2],
-        // line: {
-        // width: 3
-        // }
-    };
-    let trace4 = {
-        x: row4x,
-        y: row4y,
-        type: 'scatter',
-        // name: stateArray[3],
-        // line: {
-        // width: 3
-        // }
-    };
-    let trace5 = {
-        x: row5x,
-        y: row5y,
-        type: 'scatter',
-        // name: stateArray[4],
-        // line: {
-        // width: 3
-        // }
-    };
-    let trace6 = {
-        x: row6x,
-        y: row6y,
-        type: 'scatter',
-        // name: stateArray[5],
-        // line: {
-        // width: 3
-        // }
-    };
-
-    // Data trace array
-    let traceData = [trace1, trace2, trace3, trace4, trace5];
-
-    // Apply title to the layout
-    let layout = {
-        title: "AQI over time"
-    };
-    console.log('traceData',traceData)
-    // Render the plot to the div tag with id "plot"
-    Plotly.newPlot("linePlot", traceData, layout);
 }
 
