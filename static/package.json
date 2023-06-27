@@ -1,0 +1,15 @@
+{
+  "name": "stable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/stable.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MatthewFernandez",
+  "license": "ISC",
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "replicate": "^0.12.3"
+  }
+}
