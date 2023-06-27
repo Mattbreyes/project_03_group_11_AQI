@@ -1,6 +1,4 @@
-// TODO: RUN D3 SEQUENTIALLY
-
-// console.log('Made it linePlot!');
+// Initialize default lineplot
 updateLinePlot();
 // When clicked on "Go" button, the selected date will be passed to the updateMap function
 // to generate new overlay map with updated air quality data.
@@ -11,7 +9,8 @@ document.getElementById('selected_date_button').addEventListener('click', functi
 
 function updateLinePlot()
 {
-    var stateArray = [];
+    // variable assignment for nested d3 logic
+    var cityArray = [];
     var oneYrData =[]; 
     var twoYrData = [];
     var threeYrData = [];
@@ -46,11 +45,11 @@ d3.json(url).then(function(data) {
         // var x = data['city_ascii'];
         for (let i=0; i<initialData.length; i++){
             // 5 lines 
-            stateArray.push(initialData[i].city_ascii);
+            cityArray.push(initialData[i].city_ascii);
             row1x.push(initialData[i].Date);
             row1y.push(initialData[i].aqi);
         }
-        console.log('stateArray',stateArray);
+        console.log('cityArray',cityArray);
         console.log('row1x',row1x);
         console.log('row1y', row1y);
         // 1 yr later data
@@ -64,9 +63,9 @@ d3.json(url).then(function(data) {
             // temp array to hold each states values
             var states = [];
             // Iterate over +1 year
-            for( let i=0; i<stateArray.length; i++){
+            for( let i=0; i<cityArray.length; i++){
                 for (let j=0; j< oneYrData.length; j++){
-                    if (stateArray[i] == oneYrData[j].city_ascii){
+                    if (cityArray[i] == oneYrData[j].city_ascii){
                         row2x.push(oneYrData[j].Date);
                         row2y.push(oneYrData[j].aqi);
                     }
@@ -80,9 +79,9 @@ d3.json(url).then(function(data) {
                 // console.log('lineplot 2 YEAR->',data);
                 twoYrData = data;
 
-                for( let i=0; i<stateArray.length; i++){
+                for( let i=0; i<cityArray.length; i++){
                     for (let j=0; j< twoYrData.length; j++){
-                        if (stateArray[i] == twoYrData[j].city_ascii){
+                        if (cityArray[i] == twoYrData[j].city_ascii){
                             row3x.push(twoYrData[j].Date);
                             row3y.push(twoYrData[j].aqi);
                         }
@@ -97,9 +96,9 @@ d3.json(url).then(function(data) {
                     // console.log('lineplot 3 YEAR->',data);
                     threeYrData = data;
 
-                    for( let i=0; i<stateArray.length; i++){
+                    for( let i=0; i<cityArray.length; i++){
                         for (let j=0; j< threeYrData.length; j++){
-                            if (stateArray[i] == threeYrData[j].city_ascii){
+                            if (cityArray[i] == threeYrData[j].city_ascii){
                                 row4x.push(threeYrData[j].Date);
                                 row4y.push(threeYrData[j].aqi);
                             }
@@ -112,9 +111,9 @@ d3.json(url).then(function(data) {
                     sequential(15)
                         // console.log('lineplot 4 YEAR->',data);
                         fourYrData = data;
-                        for( let i=0; i<stateArray.length; i++){
+                        for( let i=0; i<cityArray.length; i++){
                             for (let j=0; j< fourYrData.length; j++){
-                                if (stateArray[i] == fourYrData[j].city_ascii){
+                                if (cityArray[i] == fourYrData[j].city_ascii){
                                     row5x.push(fourYrData[j].Date);
                                     row5y.push(fourYrData[j].aqi);
                                 }
@@ -128,9 +127,9 @@ d3.json(url).then(function(data) {
                         sequential(16)
                             // console.log('lineplot 5 YEAR->',data);
                             fiveYrData = data;
-                            for( let i=0; i<stateArray.length; i++){
+                            for( let i=0; i<cityArray.length; i++){
                                 for (let j=0; j< fiveYrData.length; j++){
-                                    if (stateArray[i] == fiveYrData[j].city_ascii){
+                                    if (cityArray[i] == fiveYrData[j].city_ascii){
                                         row6x.push(fiveYrData[j].Date);
                                         row6y.push(fiveYrData[j].aqi);
                                     }
@@ -141,15 +140,17 @@ d3.json(url).then(function(data) {
 
                         // Logic to go through rows and split it up to proper trace data with same length/size
                         // EX: 
+                        //          Order of all rows w/r to cityArray order found in console
                         //      x: [ ['Tue, 01 Jan 1980 08:00:00 GMT', 'Tue, 01 Jan 1981 08:00:00 GMT', ... , 'Tue, 01 Jan 1985 08:00:00 GMT'], ... ]
                         //      y: [ [ 128, 120, ... , 140] , ... ]
                         // Trace for the Data
-                        // first elements in rows are w/r to order of stateArray
+                        // first elements in rows are w/r to order of cityArray
                         var dateMatrix = [row1x,row2x, row3x, row4x, row5x, row6x];
                         var aqiMatrix = [row1y,row2y, row3y, row4y, row5y, row6y];
                         console.log('dateMatrix',dateMatrix);
                         console.log('aqiMatrix',aqiMatrix);
                         
+                        // Variables to assign to trace x and y coordinates from matrices
                         var trace1x = [];
                         var trace1y = [];
                         var trace2x = [];
@@ -160,6 +161,7 @@ d3.json(url).then(function(data) {
                         var trace4y = [];
                         var trace5x = [];
                         var trace5y = [];
+                        // Iterate over the matrix to get the values w/r to cityArray
                         for (let i=0; i<dateMatrix.length; i++){
                             for (let j = 0; j<aqiMatrix.length; j++){
                                 if (j == 0){
@@ -191,20 +193,16 @@ d3.json(url).then(function(data) {
                                     trace5x.push(dateMatrix[i][4]);
                                     trace5y.push(aqiMatrix[i][4]);
                                 
-                                }
-                                
-                                
-                            }
-                            // console.log(i);
-                            
-                            
+                                }                                
+                            }                            
                         }
 
+                        // Each line/city has its own trace 
                         let trace1 = {
                             x: trace1x,
                             y: trace1y,
                             type: 'scatter',
-                            name: stateArray[0],
+                            name: cityArray[0],
                             line: {
                             width: 3
                             }
@@ -213,7 +211,7 @@ d3.json(url).then(function(data) {
                             x: trace2x,
                             y: trace2y,
                             type: 'scatter',
-                            name: stateArray[1],
+                            name: cityArray[1],
                             line: {
                             width: 3
                             }
@@ -222,7 +220,7 @@ d3.json(url).then(function(data) {
                             x: trace3x,
                             y: trace3y,
                             type: 'scatter',
-                            name: stateArray[2],
+                            name: cityArray[2],
                             line: {
                             width: 3
                             }
@@ -231,7 +229,7 @@ d3.json(url).then(function(data) {
                             x: trace4x,
                             y: trace4y,
                             type: 'scatter',
-                            name: stateArray[3],
+                            name: cityArray[3],
                             line: {
                             width: 3
                             }
@@ -240,7 +238,7 @@ d3.json(url).then(function(data) {
                             x: trace5x,
                             y: trace5y,
                             type: 'scatter',
-                            name: stateArray[4],
+                            name: cityArray[4],
                             line: {
                             width: 3
                             }
@@ -252,14 +250,14 @@ d3.json(url).then(function(data) {
 
                         // Apply title to the layout
                         let layout = {
-                            title: "AQI over time"
+                            title: "AQI Over 5 Years"
                         };
                         console.log('traceData',traceData)
                         // Render the plot to the div tag with id "plot"
                         Plotly.newPlot("linePlot", traceData, layout);
-                });
+                    });
                 
-            });
+                });
             
             });
             
