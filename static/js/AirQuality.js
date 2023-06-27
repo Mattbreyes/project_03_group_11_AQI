@@ -3,11 +3,11 @@ let baseMap = createBaseMap();
 updateMap(baseMap);
 // updateBarPlot();
 
-console.log('Made it!');
+// console.log('Made it!');
 // When clicked on "Go" button, the selected date will be passed to the updateMap function
 // to generate new overlay map with updated air quality data.
 document.getElementById('selected_date_button').addEventListener('click', function() {
-  console.log('clicked');
+  // console.log('clicked');
   updateMap(baseMap);
   // updateBarPlot();
 })
@@ -55,7 +55,7 @@ function updateMap(myMap) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var geoData = JSON.parse(xhr.responseText);
-      console.log('geoData',geoData);
+      // console.log('geoData',geoData);
 
 
       // Define a function that we want to run once for each feature in the features array.
@@ -90,7 +90,6 @@ function updateMap(myMap) {
         else if (aqi >= 0) {
             color = "Green";
         }
-        //console.log("Population: " + aqi + " Color: " + color);
       
         return color;
       };
@@ -123,21 +122,4 @@ function updateMap(myMap) {
   };
   xhr.send();
 
-  // // Get the selected date from the dropdown menu
-  // var selectedDate = document.getElementById('inputDate').value;
-  // // Construct the URL with the selected date
-  // var url = '/' + selectedDate;
-  // // Send a request to the Flask app with the selected date
-  // var xhr = new XMLHttpRequest();
-  // xhr.open('GET', url, true);
-  // console.log('updateBarPlot', xhr);
-  // xhr.onreadystatechange = function() {
-  //   if (xhr.readyState === 4 && xhr.status === 200)
-  //   {
-  //     var geoData = JSON.parse(xhr.responseText);
-  //     console.log('Cats Rule!', geoData.features);
-  //     // Plotly.newPlot('visual2', geoData);
-  //   };
-  //   xhr.send();
-  // }
 }
