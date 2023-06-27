@@ -41,7 +41,7 @@
     </div>
     </div>
 
-    <div class="container-fluid border rounded"> <!--TODO rm border, have left and right columns touch edge of screens respectively-->
+    <div class="container-fluid border rounded">
         <div class="row p-1">
             <div class="col-md-2 align-self-center">
                 <h4><b>Air Quality Index (AQI)</b></h4>
@@ -75,6 +75,7 @@
   
     <br>
     
+
     <!-- D3 Javascript -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- Plotly Javascript -->
@@ -88,11 +89,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <!-- Replicate import needed -->
+    <script type="module">
+        import Replicate from "https://cdn.jsdelivr.net/gh/nicholascelestin/replicate-js/replicate.js"
+        // let replicate = new Replicate({proxyUrl: 'http://localhost:3000/api'});
+    </script>
     <!-- Our Javascripts -->
-    <!-- <script src="{{url_for('static', filename='style.css')}}"></script> -->
     <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
-    <script src="{{url_for('static', filename='js/linePlot.js')}}"></script>
     <script src="{{url_for('static', filename='js/barplot.js')}}"></script>
+    <script src="{{url_for('static', filename='js/linePlot.js')}}"></script>
+    <script src="{{url_for('static', filename='js/stable.js')}}"></script>
+    <!-- replicate npm js -->
+    <!-- <script src="{{url_for('static', filename='node_modules/replicate/index.js')}}"></script> -->
+
+    <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
     
 
 </body>
