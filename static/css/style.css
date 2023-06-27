@@ -5,15 +5,18 @@ img {
 }
 
 h1 {
-  top: 30%;
+  top: 35%;
+  font-size: 5em;
+  color: #1B2631 !important;
 }
 
-p {
+h5 {
+  font-size: 2em;
   font-style: italic;
 }
 
 body {
-  background-color: antiquewhite;
+  background-color: #EBF5FB  ;
 }
 
 #map {
@@ -24,13 +27,14 @@ body {
   width: 100%;
 }
 
-.aqi-chart {
-  float: left;
-}
-
 label {
   display: block;
   font: 1rem 'Fira Sans', sans-serif;
+  font-size: 1em;
+}
+
+.d-flex {
+  font-size: 1.5em;
 }
 
 input,
@@ -56,8 +60,8 @@ html {
 .legend {
   background-color: #fff;
   padding: 10px;
-  /* border: 1px solid #ccc;
-  border-radius: 5px; */
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .legend div {
@@ -70,4 +74,3 @@ html {
   display: inline-block;
   margin-right: 5px;
 }
-
