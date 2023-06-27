@@ -20,7 +20,7 @@ Using the `Flask API` in conjunction with `HTML`,`Javascript`, and `CSS`, we cre
     - This graphic shows the top 10 cities in terms of population size and their corresponding air quality rating.
     - PICTURE
 - `Line Plot`
-    - This graphic shows the top 10 cities in terms of population size and their corresponding air quality rating over the whole date range available in the database.
+    - This graphic shows the 5 year evolution of air quality in the top cities within California.
     - PICTURE
 
 To access the local Flask API, simply run the `app.py` file from the terminal.
