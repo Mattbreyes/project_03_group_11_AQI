@@ -8,7 +8,7 @@ This project explores the relationship between population and air quality in the
 - `hasanhaider2468` Muhammad Haider 
 - `nazelik` Nazeli Mnatsakanyan
 - `jingsy119` Jing Sy
-- `sanjana2000` Sanjana
+- `sanjana2000` Sanjana Islam
 ## Introduction
 Using the `Flask API` in conjunction with `HTML`,`Javascript`, and `CSS`, we created an interactive interface where users can specify dates to display the results of the analysis. Through the use of `PGAdmin` and `SQL`, we created a database to house the data and used the Flask API to fetch and run the analysis while using Javascript to create the visualizations.
 
