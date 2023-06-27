@@ -20,7 +20,7 @@
 
 <body>
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 text-center">
         <div class="maintxt">
@@ -41,7 +41,7 @@
     </div>
     </div>
 
-    <div class="container border rounded"> <!--TODO rm border, have left and right columns touch edge of screens respectively-->
+    <div class="container-fluid border rounded"> <!--TODO rm border, have left and right columns touch edge of screens respectively-->
         <div class="row p-1">
             <div class="col-md-2 align-self-center">
                 <h4><b>Air Quality Index (AQI)</b></h4>
@@ -55,7 +55,7 @@
     
     <br>
     
-    <div class="container border rounded">
+    <div class="container-fluid border rounded">
       <div class="row p-1">
         <div class="col-md-12">
           <div id="plot2"></div>
@@ -65,7 +65,7 @@
     
     <br>
 
-    <div class="container border rounded">
+    <div class="container-fluid border rounded">
       <div class="row p-1">
         <div class="col-md-12">
           <div id="plot3"></div>
@@ -91,7 +91,8 @@
     <!-- Our Javascripts -->
     <!-- <script src="{{url_for('static', filename='style.css')}}"></script> -->
     <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
-    <script src="{{url_for('static', filename='js/testbar.js')}}"></script>
+    <script src="{{url_for('static', filename='js/linePlot.js')}}"></script>
+    <script src="{{url_for('static', filename='js/barplot.js')}}"></script>
     
 
 </body>
