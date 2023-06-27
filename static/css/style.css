@@ -1,0 +1,81 @@
+img {
+  height: 350px;
+  width: 100%;
+  opacity: 0.85;
+}
+
+h1 {
+  top: 30%;
+}
+
+p {
+  font-style: italic;
+}
+
+body {
+  background-color: antiquewhite;
+}
+
+#map {
+  position: relative;
+  border: 1.5px solid black;
+  border-radius: 10px;
+  height: 600px;
+  width: 100%;
+}
+
+#map2 {
+  position: relative;
+  border: 1.5px solid black;
+  border-radius: 10px;
+  height: 600px;
+  width: 100%;
+}
+
+.aqi-chart {
+  float: left;
+}
+
+label {
+  display: block;
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+
+
+/* New added */
+/*
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+*/
+.legend {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.legend div {
+  margin-bottom: 5px;
+}
+
+.legend i {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
