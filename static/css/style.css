@@ -24,14 +24,6 @@ body {
   width: 100%;
 }
 
-#map2 {
-  position: relative;
-  border: 1.5px solid black;
-  border-radius: 10px;
-  height: 600px;
-  width: 100%;
-}
-
 .aqi-chart {
   float: left;
 }
@@ -64,8 +56,8 @@ html {
 .legend {
   background-color: #fff;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  /* border: 1px solid #ccc;
+  border-radius: 5px; */
 }
 
 .legend div {
