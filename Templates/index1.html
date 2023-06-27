@@ -16,6 +16,9 @@
     crossorigin=""/>
     <!-- Our custom CSS -->
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <!-- animate library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   </head>
 
 <body>
@@ -24,15 +27,14 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <div class="maintxt">
-          <img class='rounded-circle'src="https://assets3.thrillist.com/v1/image/3122233/1584x1054/crop;jpeg_quality=60.jpg" alt="Nashville Skyline">
-            <h1 class="carousel-caption">United States Air Quality</h1>
+          <img class='nashville rounded-circle'src="https://assets3.thrillist.com/v1/image/3122233/1584x1054/crop;jpeg_quality=60.jpg" alt="Nashville Skyline">
+            <h1 class="carousel-caption animate__animated animate__pulse animate__repeat-3">United States Air Quality</h1>
             <h5 class="carousel-caption">Welcome to the visualizations of US air quality 1980-2023</h5>
         </div>
       </div>
     </div>
-  </div>
 
-  <br>
+    <br>
 
     <div class="d-flex align-items-center justify-content-center p-2">
         <label for="start"><b>Start date:</b>&nbsp</label>
@@ -55,26 +57,27 @@
     
     <br>
     
-    <div class="container-fluid border rounded">
+    <div class="container-fluid justify-content-md-center border rounded">
       <div class="row p-1">
         <div class="col-md-12">
-          <div id="plot2"></div>
+          <div id="barPlot"></div>
         </div>
       </div>
     </div>
     
     <br>
 
-    <div class="container-fluid border rounded">
+    <div class="container-fluid justify-content-md-center border rounded">
       <div class="row p-1">
         <div class="col-md-12">
-          <div id="plot3"></div>
+          <div id="linePlot"></div>
         </div>
       </div>
     </div>
-  
-    <br>
     
+    <br>
+
+  </div>
 
     <!-- D3 Javascript -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -98,13 +101,10 @@
     <script src="{{url_for('static', filename='js/AirQuality.js')}}"></script>
     <script src="{{url_for('static', filename='js/barplot.js')}}"></script>
     <script src="{{url_for('static', filename='js/linePlot.js')}}"></script>
-    <script src="{{url_for('static', filename='js/stable.js')}}"></script>
+    <!-- <script src="{{url_for('static', filename='js/stable.js')}}"></script> -->
     <!-- replicate npm js -->
     <!-- <script src="{{url_for('static', filename='node_modules/replicate/index.js')}}"></script> -->
-
-    <!-- <script src="{{url_for('static', filename='Heatmap.js')}}"></script> -->
     
-
 </body>
 
 </html>
