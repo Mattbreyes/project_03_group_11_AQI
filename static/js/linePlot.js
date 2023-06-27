@@ -48,8 +48,7 @@ function updateLinePlot()
         let FloData = data.filter(florida);
         let caliData = data.filter(cali);
 
-          
-   
+        
         
         // Trace for the Data
         let trace1 = {
