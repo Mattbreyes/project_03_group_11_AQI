@@ -15,7 +15,7 @@ Using the `Flask API` in conjunction with `HTML`,`Javascript`, and `CSS`, we cre
 ## Visualizations
 - `Bubble Plot`
     - This graphic shows the population size in relation to the surrounding air quality of the city for a specific date.
-    - ![bubble](images\bubble_plot.png)
+    - ![bubble](images/bubble_plot.png)
 - `Bar Plot`
     - This graphic shows the top 10 cities in terms of population size and their corresponding air quality rating.
     - PICTURE
