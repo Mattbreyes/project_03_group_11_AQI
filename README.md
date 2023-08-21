@@ -1,4 +1,4 @@
-# Project 3: The Evoloution of Air Quality in the United States
+# Project 3: The Evolution of Air Quality in the United States
 
 ## Overview
 This project explores the relationship between population and air quality in the United States over several years. Users will be able to interact with the Flask API and view the corresponding air quality data for any specified date range.
